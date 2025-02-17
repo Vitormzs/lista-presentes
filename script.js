@@ -22,3 +22,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     showSlide(0);
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Criar o botão caso ele não esteja no HTML
+    if (!document.querySelector(".top-button")) {
+        const button = document.createElement("button");
+        button.classList.add("floating-button", "top-button");
+        button.innerHTML = "↑";
+        document.body.appendChild(button);
+    }
+
+    const topButton = document.querySelector(".top-button");
+
+    if (topButton) {
+        // Mostrar o botão ao rolar para baixo
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+                topButton.style.display = "block";
+            } else {
+                topButton.style.display = "none";
+            }
+        });
+
+        // Adicionar evento de clique para voltar ao topo
+        topButton.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+});
+
